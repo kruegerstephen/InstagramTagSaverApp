@@ -35,11 +35,11 @@
             android:text="Whoops, something went wrong"
             android:visibility="invisible" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="Add the new category's name"
-            />
+        <!--<EditText-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:hint="Add the new category's name"-->
+            <!--/>-->
 
 
 
