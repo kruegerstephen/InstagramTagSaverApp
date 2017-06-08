@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/nathan/Documents/School/Spring2017/cs496/new-tagsaver/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="4a25c9e1971ab4130519cab79a1da49660ca4743">
+        <dex dex="/Users/nathan/Documents/School/Spring2017/cs496/new-tagsaver/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_ef407ca1b68e734ec3eadc9bbbdbbd35e8c5da6a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/nathan/Documents/School/Spring2017/cs496/new-tagsaver/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="/Users/nathan/Documents/School/Spring2017/cs496/new-tagsaver/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_a8711f6e4b3893143162e58af5a4c88e44eb9df1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/nathan/Documents/School/Spring2017/cs496/final-project-tagsaver/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="524091ec94547ffa7071d647e2cb49b3da5456c9">
+        <dex dex="/Users/nathan/Documents/School/Spring2017/cs496/final-project-tagsaver/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_98ab320b9311a77731ef91592c53c9aada07902a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/nathan/Documents/School/Spring2017/cs496/final-project-tagsaver/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="/Users/nathan/Documents/School/Spring2017/cs496/final-project-tagsaver/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_cee17165ccade9b73db4472e7b42dbd006d897fd/classes.dex" />
+    </item>
+
+</items>
