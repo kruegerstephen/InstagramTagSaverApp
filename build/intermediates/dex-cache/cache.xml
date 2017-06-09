@@ -3,57 +3,57 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Jeremy\.android\build-cache\d4cbec86a6e8deed20c9c6df50f4e983c6c97723\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="536228b2496030d983d01856aa56b4d71b57d0db">
-        <dex dex="C:\Users\Jeremy\Documents\GitHub\final-project-tagsaver\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d4b2a50e990e3192600d8e0de887c9afd347e7be\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Jeremy\Documents\GitHub\final-project-tagsaver\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
-        <dex dex="C:\Users\Jeremy\Documents\GitHub\final-project-tagsaver\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_2a1e613e6ae704cb58ebc0a5ef64de16de050058\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Jeremy\.android\build-cache\09469f79a90285319e1d4d8198b964877d0f47e4\output\jars\classes.jar"
+        jar="/Users/nathan/.android/build-cache/06400ca6236491d14115efc23b3c0054a767c56e/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
         sha1="2e46d498b78635da65dc4a0e4c26de85e5c45c83">
-        <dex dex="C:\Users\Jeremy\Documents\GitHub\final-project-tagsaver\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_92b25b987c4b6ab75f8a364a9c64d122246fcba0\classes.dex" />
+        <dex dex="/Users/nathan/Documents/School/Spring2017/cs496/final-project-tagsaver/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_bcb6f8809cb806817a3f8e424c8bfa3f03013dca/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Jeremy\.gradle\caches\modules-2\files-2.1\com.squareup.okhttp3\okhttp\3.7.0\6edbebdd8868708db718d15c09c4b28037fd487e\okhttp-3.7.0.jar"
+        jar="/Users/nathan/Documents/School/Spring2017/cs496/final-project-tagsaver/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
-        sha1="6edbebdd8868708db718d15c09c4b28037fd487e">
-        <dex dex="C:\Users\Jeremy\Documents\GitHub\final-project-tagsaver\app\build\intermediates\transforms\dex\debug\folders\1000\10\okhttp-3.7.0_5124ef203642565ead5194676672b3711e28dadd\classes.dex" />
+        sha1="aa8e2bf6dd4d71c05c68ecdbab6df03aef9ff4bb">
+        <dex dex="/Users/nathan/Documents/School/Spring2017/cs496/final-project-tagsaver/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_98ab320b9311a77731ef91592c53c9aada07902a/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Jeremy\.gradle\caches\modules-2\files-2.1\com.squareup.okio\okio\1.12.0\3742beff8024d0a0073d284b7c5e4cbf73d99b25\okio-1.12.0.jar"
+        jar="/Users/nathan/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.12.0/3742beff8024d0a0073d284b7c5e4cbf73d99b25/okio-1.12.0.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
         sha1="3742beff8024d0a0073d284b7c5e4cbf73d99b25">
-        <dex dex="C:\Users\Jeremy\Documents\GitHub\final-project-tagsaver\app\build\intermediates\transforms\dex\debug\folders\1000\10\okio-1.12.0_c24268bffdd79a3046d473e74a471ba20b0cda9b\classes.dex" />
+        <dex dex="/Users/nathan/Documents/School/Spring2017/cs496/final-project-tagsaver/app/build/intermediates/transforms/dex/debug/folders/1000/10/okio-1.12.0_ee456af268e7766c515f800a63829991ef4e052e/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Jeremy\Documents\GitHub\final-project-tagsaver\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jar="/Users/nathan/.android/build-cache/f924d283e373761d5c931894cd0a6c33c7a29bf1/output/jars/classes.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
-        sha1="705b99d40196ec13a5fefaec88e424dbdf935dd8">
-        <dex dex="C:\Users\Jeremy\Documents\GitHub\final-project-tagsaver\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_f6f94c3e9080601be0e395c7c45fda2d7f034caf\classes.dex" />
+        sha1="536228b2496030d983d01856aa56b4d71b57d0db">
+        <dex dex="/Users/nathan/Documents/School/Spring2017/cs496/final-project-tagsaver/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_98557c080d42962b1aa6d0f1e0060f41416c6512/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/nathan/Documents/School/Spring2017/cs496/final-project-tagsaver/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="12920f9016b8b05acbc2af7cdc13cef6946fe7d3">
+        <dex dex="/Users/nathan/Documents/School/Spring2017/cs496/final-project-tagsaver/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_cee17165ccade9b73db4472e7b42dbd006d897fd/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/nathan/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.7.0/6edbebdd8868708db718d15c09c4b28037fd487e/okhttp-3.7.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="6edbebdd8868708db718d15c09c4b28037fd487e">
+        <dex dex="/Users/nathan/Documents/School/Spring2017/cs496/final-project-tagsaver/app/build/intermediates/transforms/dex/debug/folders/1000/10/okhttp-3.7.0_d4a7d339f30dacf3c3a5513a72dc7d0825b93540/classes.dex" />
     </item>
 
 </items>

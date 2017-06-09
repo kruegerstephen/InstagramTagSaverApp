@@ -47,8 +47,8 @@ public class Instagram {
     private String mClientId;
     private String mClientSecret;
 
-    static int WHAT_FINALIZE = 0;
-    static int WHAT_ERROR = 1;
+    public static int WHAT_FINALIZE = 0;
+    public static int WHAT_ERROR = 1;
     private static int WHAT_FETCH_INFO = 2;
 
     /**

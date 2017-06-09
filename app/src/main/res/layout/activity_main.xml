@@ -18,6 +18,12 @@
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+        <Button
+            android:id="@+id/btnConnect"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Connect" />
+
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_main" />
