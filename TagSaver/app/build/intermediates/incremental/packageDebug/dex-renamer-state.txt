@@ -1,7 +1,0 @@
-#Wed Jun 07 16:20:39 PDT 2017
-base.0=C\:\\Users\\Jeremy\\Documents\\GitHub\\final-project-tagsaver\\TagSaver\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_6a9934d6e2ffea0c7780e5d0fe7c55802556b717
-renamed.1=classes2.dex
-renamed.0=classes.dex
-file.1=C\:\\Users\\Jeremy\\Documents\\GitHub\\final-project-tagsaver\\TagSaver\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_b44ccee2bc0166af0451f604d9f5baf6a114effa\\classes.dex
-base.1=C\:\\Users\\Jeremy\\Documents\\GitHub\\final-project-tagsaver\\TagSaver\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_b44ccee2bc0166af0451f604d9f5baf6a114effa
-file.0=C\:\\Users\\Jeremy\\Documents\\GitHub\\final-project-tagsaver\\TagSaver\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_6a9934d6e2ffea0c7780e5d0fe7c55802556b717\\classes.dex
