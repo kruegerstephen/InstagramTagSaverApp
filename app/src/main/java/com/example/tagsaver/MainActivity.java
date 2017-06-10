@@ -47,8 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerAdapter mCategoriesAdapter;
     private SQLiteDatabase mDBread;
     private SQLiteDatabase mDBwrite;
-    private String[] proj={CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME,CategoriesContract.FavoriteRepos._ID};
-    private String whereClauseArgs = "";
+
     private String[] whereCondition = {""};
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -86,35 +85,26 @@ public class MainActivity extends AppCompatActivity {
         mDBread=dbHelper.getReadableDatabase();
         String sortOrder =
                 CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME+ " DESC";
+        String[] proj={CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME,CategoriesContract.FavoriteRepos._ID};
+        String whereClauseArgs = "";
 
-//
-//        Cursor cursor = mDBread.query(
-//                CategoriesContract.FavoriteRepos.TABLE_NAME, // The table to query
-//                proj,                               // The columns to return
-//                whereClauseArgs,                                // The columns for the WHERE clause
-//                whereCondition,                            // The values for the WHERE clause
-//                null,                                     // don't group the rows
-//                null,                                     // don't filter by row groups
-//                sortOrder                                 // The sort order
-//        );
-
-//
-//        ArrayList recylerData = new ArrayList<>();
-//        ArrayList sublist ;
-//        while(cursor.moveToNext()) {
-//            sublist = new ArrayList();
-//            sublist.add(cursor.getLong(
-//                    cursor.getColumnIndexOrThrow(CategoriesContract.FavoriteRepos._ID)));
-//            sublist.add(cursor.getString(cursor.getColumnIndex(CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME)));
-//            recylerData.add(sublist);
-//        }
-//        cursor.close();
-//        for (int i=0;i<recylerData.size();i++){
-//            Log.d(TAG,recylerData.get(1).toString());
-//        }
-
-
-        //FOR THE RECYCLER CALL THE ADAPTER WITH RECYCLERDATA
+        Cursor cursor = mDBread.query(
+                CategoriesContract.FavoriteRepos.TABLE_NAME, // The table to query
+                null,                                // The columns to return
+                null,                                // The columns for the WHERE clause
+                null,                            // The values for the WHERE clause
+                null,                                     // don't group the rows
+                null,                                     // don't filter by row groups
+                sortOrder                                 // The sort order
+        );
+        Log.d(TAG,"cursor created");
+        cursor.moveToNext();
+        cursor.moveToNext();
+        cursor.moveToNext();
+        Long itemId = new Long(cursor.getLong(cursor.getColumnIndexOrThrow(CategoriesContract.FavoriteRepos._ID)));
+        String value = cursor.getString(cursor.getColumnIndex(CategoriesContract.FavoriteRepos.COLUMN_DESCRIPTION));
+        Log.d(TAG,itemId.toString());
+        Log.d(TAG,value);
 
 
 
