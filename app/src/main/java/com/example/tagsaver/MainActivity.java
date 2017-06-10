@@ -100,13 +100,13 @@ public class MainActivity extends AppCompatActivity {
 
         //TEST ARE BELOW THIS COMMENT LINE
         Log.d(TAG,"cursor created");
-        cursor.moveToNext();
-        cursor.moveToNext();
-        cursor.moveToNext();
-        Long itemId = new Long(cursor.getLong(cursor.getColumnIndexOrThrow(CategoriesContract.FavoriteRepos._ID)));
-        String value = cursor.getString(cursor.getColumnIndex(CategoriesContract.FavoriteRepos.COLUMN_DESCRIPTION));
-        Log.d(TAG,itemId.toString());
-        Log.d(TAG,value);
+        while(cursor.moveToNext()) {
+
+            Long itemId = new Long(cursor.getLong(cursor.getColumnIndexOrThrow(CategoriesContract.FavoriteRepos._ID)));
+            String value = cursor.getString(cursor.getColumnIndex(CategoriesContract.FavoriteRepos.COLUMN_DESCRIPTION));
+            Log.d(TAG, itemId.toString());
+            Log.d(TAG, value);
+        }
         //TESTS ARE ABOVE THIS COMMENT
 
         //WE NEED TO REMOVE THAT BECAUSE WE NEED THE FIRST ITEM IN THE RECYCLER VIEW
@@ -166,6 +166,29 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume(){
+        super.onResume();
+        String sortOrder =
+                CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME+ " DESC";
+        Cursor cursor = mDBread.query(
+                CategoriesContract.FavoriteRepos.TABLE_NAME, // The table to query
+                null,                                // The columns to return
+                null,                                // The columns for the WHERE clause
+                null,                            // The values for the WHERE clause
+                null,                                     // don't group the rows
+                null,                                     // don't filter by row groups
+                sortOrder                                 // The sort order
+        );
+        while(cursor.moveToNext()) {
+
+            Long itemId = new Long(cursor.getLong(cursor.getColumnIndexOrThrow(CategoriesContract.FavoriteRepos._ID)));
+            String value = cursor.getString(cursor.getColumnIndex(CategoriesContract.FavoriteRepos.COLUMN_DESCRIPTION));
+            Log.d(TAG, itemId.toString());
+            Log.d(TAG, value);
+        }
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
