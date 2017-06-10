@@ -97,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
                 null,                                     // don't filter by row groups
                 sortOrder                                 // The sort order
         );
+
+        //TEST ARE BELOW THIS COMMENT LINE
         Log.d(TAG,"cursor created");
         cursor.moveToNext();
         cursor.moveToNext();
@@ -105,7 +107,9 @@ public class MainActivity extends AppCompatActivity {
         String value = cursor.getString(cursor.getColumnIndex(CategoriesContract.FavoriteRepos.COLUMN_DESCRIPTION));
         Log.d(TAG,itemId.toString());
         Log.d(TAG,value);
+        //TESTS ARE ABOVE THIS COMMENT
 
+        //WE NEED TO REMOVE THAT BECAUSE WE NEED THE FIRST ITEM IN THE RECYCLER VIEW
 
 
 
