@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,12 +27,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 // Instagram
+import com.example.tagsaver.utils.CategoriesContract;
 import com.example.tagsaver.utils.Instagram;
 import com.example.tagsaver.utils.Instagram.OAuthAuthenticationListener;
 import com.example.tagsaver.utils.ApplicationData;
+import com.example.tagsaver.utils.TagsDBHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView mLoadingErrorMessageTV;
     private boolean isErrorVisible= false;
     private RecyclerAdapter mCategoriesAdapter;
+    private SQLiteDatabase mDBread;
+    private SQLiteDatabase mDBwrite;
+    private String[] proj={CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME,CategoriesContract.FavoriteRepos._ID};
+    private String whereClauseArgs = "";
+    private String[] whereCondition = {""};
+    private static final String TAG = MainActivity.class.getSimpleName();
+
+
 
 
     // Instagram stuff
@@ -68,6 +82,41 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mLoadingErrorMessageTV=(TextView)findViewById(R.id.tv_loading_error_message);
+        TagsDBHelper dbHelper = new TagsDBHelper(this);
+        mDBread=dbHelper.getReadableDatabase();
+        String sortOrder =
+                CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME+ " DESC";
+
+//
+//        Cursor cursor = mDBread.query(
+//                CategoriesContract.FavoriteRepos.TABLE_NAME, // The table to query
+//                proj,                               // The columns to return
+//                whereClauseArgs,                                // The columns for the WHERE clause
+//                whereCondition,                            // The values for the WHERE clause
+//                null,                                     // don't group the rows
+//                null,                                     // don't filter by row groups
+//                sortOrder                                 // The sort order
+//        );
+
+//
+//        ArrayList recylerData = new ArrayList<>();
+//        ArrayList sublist ;
+//        while(cursor.moveToNext()) {
+//            sublist = new ArrayList();
+//            sublist.add(cursor.getLong(
+//                    cursor.getColumnIndexOrThrow(CategoriesContract.FavoriteRepos._ID)));
+//            sublist.add(cursor.getString(cursor.getColumnIndex(CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME)));
+//            recylerData.add(sublist);
+//        }
+//        cursor.close();
+//        for (int i=0;i<recylerData.size();i++){
+//            Log.d(TAG,recylerData.get(1).toString());
+//        }
+
+
+        //FOR THE RECYCLER CALL THE ADAPTER WITH RECYCLERDATA
+
+
 
 
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
