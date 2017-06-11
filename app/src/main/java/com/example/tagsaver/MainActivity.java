@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     // Instagram stuff
     private Instagram mApp;
     private Button btnConnect, btnViewInfo, btnGetAllImages, btnFollowers,
@@ -88,6 +89,15 @@ public class MainActivity extends AppCompatActivity {
         String[] proj={CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME,CategoriesContract.FavoriteRepos._ID};
         String whereClauseArgs = "";
 
+        //recyl view
+        mSearchResultsRV = (RecyclerView)findViewById(R.id.rv_categories);
+        mSearchResultsRV.setLayoutManager(new LinearLayoutManager(this));
+        mSearchResultsRV.setHasFixedSize(true);
+        mCategoriesAdapter = new RecyclerAdapter();
+        mSearchResultsRV.setAdapter(mCategoriesAdapter);
+
+
+
         Cursor cursor = mDBread.query(
                 CategoriesContract.FavoriteRepos.TABLE_NAME, // The table to query
                 null,                                // The columns to return
@@ -103,9 +113,11 @@ public class MainActivity extends AppCompatActivity {
         while(cursor.moveToNext()) {
 
             Long itemId = new Long(cursor.getLong(cursor.getColumnIndexOrThrow(CategoriesContract.FavoriteRepos._ID)));
-            String value = cursor.getString(cursor.getColumnIndex(CategoriesContract.FavoriteRepos.COLUMN_DESCRIPTION));
+            String value = cursor.getString(cursor.getColumnIndex(CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME));
             Log.d(TAG, itemId.toString());
             Log.d(TAG, value);
+            mCategoriesAdapter.addTag(value);
+
         }
         //TESTS ARE ABOVE THIS COMMENT
 
