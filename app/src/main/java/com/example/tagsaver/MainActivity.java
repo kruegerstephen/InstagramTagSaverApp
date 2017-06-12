@@ -198,6 +198,8 @@ public class MainActivity extends AppCompatActivity {
             String value = cursor.getString(cursor.getColumnIndex(CategoriesContract.FavoriteRepos.COLUMN_DESCRIPTION));
             Log.d(TAG, itemId.toString());
             Log.d(TAG, value);
+
+            //SEND IT TO THE RECYCLER INSEAD OF PRINTING IT
         }
 
     }
