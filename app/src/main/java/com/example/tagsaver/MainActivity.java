@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerAdapter mCategoriesAdapter;
     private SQLiteDatabase mDBread;
     private SQLiteDatabase mDBwrite;
-
+    private Button editCat;
     private String[] whereCondition = {""};
     private static final String TAG = MainActivity.class.getSimpleName();
 
