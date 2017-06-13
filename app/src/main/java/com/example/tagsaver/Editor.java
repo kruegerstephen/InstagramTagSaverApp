@@ -20,7 +20,7 @@ import com.example.tagsaver.utils.TagsDBHelper;
  * Created by Jeremy on 07-Jun-17.
  */
 
-public class Adder extends AppCompatActivity implements View.OnClickListener {
+public class Editor extends AppCompatActivity implements View.OnClickListener {
     private EditText mEditName;
     private EditText mTagsName;
     private Button mDoneButton;
@@ -36,10 +36,9 @@ public class Adder extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.addcategory);
+        setContentView(R.layout.edit_category);
         mEditName = (EditText)findViewById(R.id.cat_name);
         mTagsName = (EditText)findViewById(R.id.editTag);
-        mAddTagButton= (Button)findViewById(R.id.addTag);
         mDoneButton = (Button)findViewById(R.id.done_button);
         TagsDBHelper dbHelper = new TagsDBHelper(this);
         mDB=dbHelper.getWritableDatabase();
@@ -77,11 +76,6 @@ public class Adder extends AppCompatActivity implements View.OnClickListener {
             return -1;
         }
     }
-
-
-
-
-
 
     @Override
     public void onClick(View v) {

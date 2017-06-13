@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,11 +22,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 // Instagram
@@ -44,16 +41,12 @@ public class MainActivity extends AppCompatActivity {
     private EditText mSearchBoxET;
     private TextView mLoadingErrorMessageTV;
     private boolean isErrorVisible= false;
-    private RecyclerAdapter mCategoriesAdapter;
+    private catRecyclerAdapter mCategoriesAdapter;
     private SQLiteDatabase mDBread;
     private SQLiteDatabase mDBwrite;
     private Button editCat;
     private String[] whereCondition = {""};
     private static final String TAG = MainActivity.class.getSimpleName();
-
-
-
-
 
     // Instagram stuff
     private Instagram mApp;
@@ -89,13 +82,12 @@ public class MainActivity extends AppCompatActivity {
         String[] proj={CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME,CategoriesContract.FavoriteRepos._ID};
         String whereClauseArgs = "";
 
-        //recyl view
+     //recyl view
         mSearchResultsRV = (RecyclerView)findViewById(R.id.rv_categories);
         mSearchResultsRV.setLayoutManager(new LinearLayoutManager(this));
         mSearchResultsRV.setHasFixedSize(true);
-        mCategoriesAdapter = new RecyclerAdapter();
+        mCategoriesAdapter = new catRecyclerAdapter();
         mSearchResultsRV.setAdapter(mCategoriesAdapter);
-
 
 
         Cursor cursor = mDBread.query(
@@ -159,6 +151,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
         // click events
         btnConnect = (Button)findViewById(R.id.btnConnect);

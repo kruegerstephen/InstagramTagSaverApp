@@ -33,6 +33,11 @@
             >
 
         </activity>
+        <activity android:name=".Editor"
+            android:label="Edit Category"
+            >
+
+        </activity>
 
     </application>
 

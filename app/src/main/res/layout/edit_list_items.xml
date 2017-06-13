@@ -7,7 +7,7 @@
     android:weightSum="1">
 
     <TextView
-        android:id="@+id/tagTextView"
+        android:id="@+id/editTagTextView"
         android:layout_width="1dp"
         android:layout_height="wrap_content"
         android:layout_gravity="left|center_vertical"
@@ -19,7 +19,7 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/tagRmvBtn"
+        android:id="@+id/editTagRmvBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Delete" />
