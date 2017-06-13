@@ -178,23 +178,33 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         String sortOrder =
                 CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME + " DESC";
+        mSearchResultsRV = (RecyclerView) findViewById(R.id.rv_categories);
+        mSearchResultsRV.setLayoutManager(new LinearLayoutManager(this));
+        mSearchResultsRV.setHasFixedSize(true);
+        mCategoriesAdapter = new catRecyclerAdapter();
+        mSearchResultsRV.setAdapter(mCategoriesAdapter);
+
+
         Cursor cursor = mDBread.query(
                 CategoriesContract.FavoriteRepos.TABLE_NAME, // The table to query
-                null,                                // The columns to return
-                null,                                // The columns for the WHERE clause
-                null,                            // The values for the WHERE clause
-                null,                                     // don't group the rows
-                null,                                     // don't filter by row groups
-                sortOrder                                 // The sort order
+                null,                               // The columns to return
+                null,                               // The columns for the WHERE clause
+                null,                               // The values for the WHERE clause
+                null,                               // don't group the rows
+                null,                               // don't filter by row groups
+                sortOrder                           // The sort order
         );
+
+        //TEST ARE BELOW THIS COMMENT LINE
+        Log.d(TAG, "cursor created");
         while (cursor.moveToNext()) {
 
             Long itemId = new Long(cursor.getLong(cursor.getColumnIndexOrThrow(CategoriesContract.FavoriteRepos._ID)));
-            String value = cursor.getString(cursor.getColumnIndex(CategoriesContract.FavoriteRepos.COLUMN_DESCRIPTION));
+            String value = cursor.getString(cursor.getColumnIndex(CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME));
             Log.d(TAG, itemId.toString());
             Log.d(TAG, value);
+            mCategoriesAdapter.addTag(value);
 
-            //SEND IT TO THE RECYCLER INSEAD OF PRINTING IT
         }
 
     }

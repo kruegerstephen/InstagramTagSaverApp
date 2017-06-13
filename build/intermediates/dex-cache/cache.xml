@@ -3,12 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="/Users/nathan/Documents/School/Spring2017/cs496/final-project-tagsaver/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jar="C:\Users\Jeremy\Documents\GitHub\final-project-tagsaver\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
-        sha1="a2bc8390b1dfbbb1e45147642df15106d6bbd638">
-        <dex dex="/Users/nathan/Documents/School/Spring2017/cs496/final-project-tagsaver/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_98ab320b9311a77731ef91592c53c9aada07902a/classes.dex" />
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="C:\Users\Jeremy\Documents\GitHub\final-project-tagsaver\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_2a1e613e6ae704cb58ebc0a5ef64de16de050058\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Jeremy\Documents\GitHub\final-project-tagsaver\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="344f55d321baf2ad0cde88718b0fd1473f3b8019">
+        <dex dex="C:\Users\Jeremy\Documents\GitHub\final-project-tagsaver\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_f6f94c3e9080601be0e395c7c45fda2d7f034caf\classes.dex" />
     </item>
 
 </items>
