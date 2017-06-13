@@ -1,6 +1,7 @@
 package com.example.tagsaver;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,7 @@ public class Adder extends AppCompatActivity implements View.OnClickListener {
     private Button mDoneButton;
     private Button mAddTagButton;
     private SQLiteDatabase mDB;
+    private SQLiteDatabase mDataBaseToCheck;
     private String tags="";
 
 
@@ -43,12 +45,32 @@ public class Adder extends AppCompatActivity implements View.OnClickListener {
         mDoneButton = (Button)findViewById(R.id.done_button);
         TagsDBHelper dbHelper = new TagsDBHelper(this);
         mDB=dbHelper.getWritableDatabase();
+        mDataBaseToCheck=dbHelper.getReadableDatabase();
         mDoneButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                boolean alreadyThere=false;
+                Cursor cursor = mDataBaseToCheck.query(
+                        CategoriesContract.FavoriteRepos.TABLE_NAME, // The table to query
+                        null,                               // The columns to return
+                        null,                               // The columns for the WHERE clause
+                        null,                               // The values for the WHERE clause
+                        null,                               // don't group the rows
+                        null,                               // don't filter by row groups
+                        null                           // The sort order
+                );
+                while (cursor.moveToNext()){
+                    String value = cursor.getString(cursor.getColumnIndex(CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME));
+                    if (value.equals(mEditName.getText().toString())){
+                        alreadyThere=true;
+                    }
+                }
                 // Code here executes on main thread after user presses button
-                createNewCategory();
-                Log.d(TAG,"write new category" + tags);
-
+                if (!alreadyThere) {
+                    createNewCategory();
+                    Log.d(TAG, "write new category" + tags);
+                }else{
+                    //make toast
+                }
             }
         });
 
@@ -86,11 +108,13 @@ public class Adder extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         String tagText = mTagsName.getText().toString();
-        tags+=" "+tagText;
-        if (!TextUtils.isEmpty(tagText)) {
-            mTagAdapter.addTag(tagText);
+        if (!tagText.equals("")) {
+            tags += " " + tagText;
+            if (!TextUtils.isEmpty(tagText)) {
+                mTagAdapter.addTag(tagText);
 
-            mTagsName.setText("");
+                mTagsName.setText("");
+            }
         }
 
     }

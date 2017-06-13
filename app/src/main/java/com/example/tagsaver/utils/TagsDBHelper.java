@@ -24,7 +24,8 @@ public class TagsDBHelper extends SQLiteOpenHelper {
                         CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME + " TEXT NOT NULL, " +
                         CategoriesContract.FavoriteRepos.COLUMN_DESCRIPTION + " TEXT, " +
                         CategoriesContract.FavoriteRepos.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP " +
-                        ");";
+                        CategoriesContract.FavoriteRepos.SCORE+ " INTEGER"+
+                        ");" ;
         db.execSQL(SQL_CREATE_FAVORITE_REPOS_TABLE);
     }
 
