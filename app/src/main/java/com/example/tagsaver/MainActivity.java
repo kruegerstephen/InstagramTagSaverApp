@@ -47,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
     private String[] whereCondition = {""};
     private static final String TAG = MainActivity.class.getSimpleName();
 
+
+    private InstagramAuthentication mApp;
+    private Button btnConnect;
+
+
     private HashMap<String, String> userInfoHashmap = new HashMap<String, String>();
     private Handler handler = new Handler(new Handler.Callback() {
 
