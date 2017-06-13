@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="33dp"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:weightSum="1">
 
     <TextView
         android:id="@+id/tagTextView"
-        android:layout_width="match_parent"
-        android:layout_height="36dp"
-        android:paddingLeft="15sp"
-        android:text="TextView"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|center_vertical"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:gravity="left|center_vertical"
+        android:maxLines="1"
         android:textSize="25sp"
         android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/editBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit"
+        tools:text="Edit" />
+
 </LinearLayout>
