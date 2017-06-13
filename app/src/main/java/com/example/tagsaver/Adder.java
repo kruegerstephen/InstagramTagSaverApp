@@ -1,6 +1,7 @@
 package com.example.tagsaver;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.tagsaver.utils.CategoriesContract;
 import com.example.tagsaver.utils.TagsDBHelper;
@@ -29,6 +31,7 @@ public class Adder extends AppCompatActivity implements View.OnClickListener {
     private SQLiteDatabase mDB;
     private SQLiteDatabase mDataBaseToCheck;
     private String tags="";
+    private Context context;
 
 
     private RecyclerView mCatListRecyclerView;
@@ -38,6 +41,10 @@ public class Adder extends AppCompatActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = getApplicationContext();
+        CharSequence text = "Hello toast!";
+        final Toast[] toast = new Toast[1];
+
         setContentView(R.layout.addcategory);
         mEditName = (EditText)findViewById(R.id.cat_name);
         mTagsName = (EditText)findViewById(R.id.editTag);
@@ -69,7 +76,15 @@ public class Adder extends AppCompatActivity implements View.OnClickListener {
                     createNewCategory();
                     Log.d(TAG, "write new category" + tags);
                 }else{
-                    //make toast
+                    int duration = Toast.LENGTH_SHORT;
+                    CharSequence text = "You can't use this name because it is already used";
+                    if (toast[0] == null) {
+                        toast[0] = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+                    }
+                    toast[0].setText(text);
+                    toast[0].show();
+
+                    //make toast to say that they can't use this name
                 }
             }
         });
