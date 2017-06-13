@@ -3,21 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Jeremy\Documents\GitHub\final-project-tagsaver\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="/Users/nathan/Documents/School/Spring2017/cs496/final-project-tagsaver/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="159dbfe903aaeb7c05337a13bf645f6728e9be3c">
+        <dex dex="/Users/nathan/Documents/School/Spring2017/cs496/final-project-tagsaver/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_98ab320b9311a77731ef91592c53c9aada07902a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/nathan/Documents/School/Spring2017/cs496/final-project-tagsaver/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="C:\Users\Jeremy\Documents\GitHub\final-project-tagsaver\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_2a1e613e6ae704cb58ebc0a5ef64de16de050058\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Jeremy\Documents\GitHub\final-project-tagsaver\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.3"
-        sha1="523d3b0f493764351622db12cc3027e7afa85066">
-        <dex dex="C:\Users\Jeremy\Documents\GitHub\final-project-tagsaver\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_f6f94c3e9080601be0e395c7c45fda2d7f034caf\classes.dex" />
+        <dex dex="/Users/nathan/Documents/School/Spring2017/cs496/final-project-tagsaver/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_cee17165ccade9b73db4472e7b42dbd006d897fd/classes.dex" />
     </item>
 
 </items>

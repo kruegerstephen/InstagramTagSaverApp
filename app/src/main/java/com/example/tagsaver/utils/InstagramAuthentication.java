@@ -21,6 +21,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import android.os.Bundle;
+
 
 
 /**
@@ -32,7 +34,7 @@ import android.util.Log;
  * @author Nathan Healea <nate.healea@gamil.com
  *
  */
-public class Instagram {
+public class InstagramAuthentication {
 
     private InstagramSession mSession;
     private InstagramDialog mDialog;
@@ -77,8 +79,8 @@ public class Instagram {
     public static final String TAG_META = "meta";
     public static final String TAG_CODE = "code";
 
-    public Instagram(Context context, String clientId, String clientSecret,
-                     String callbackUrl) {
+    public InstagramAuthentication(Context context, String clientId, String clientSecret,
+                                   String callbackUrl) {
 
         mClientId = clientId;
         mClientSecret = clientSecret;
@@ -191,11 +193,6 @@ public class Instagram {
                     JSONObject jsonObj = (JSONObject) new JSONTokener(response)
                             .nextValue();
 
-                    // String name = jsonObj.getJSONObject("data").getString(
-                    // "full_name");
-                    // String bio =
-                    // jsonObj.getJSONObject("data").getString("bio");
-                    // Log.i(TAG, "Got name: " + name + ", bio [" + bio + "]");
                     JSONObject data_obj = jsonObj.getJSONObject(TAG_DATA);
                     userInfo.put(TAG_ID, data_obj.getString(TAG_ID));
 
@@ -233,6 +230,7 @@ public class Instagram {
         }.start();
 
     }
+
 
     private Handler mHandler = new Handler() {
         @Override
@@ -275,17 +273,17 @@ public class Instagram {
     public String getName() {
         return mSession.getName();
     }
-    public String getTOken() {
+
+    public String getToken() {
         return mSession.getAccessToken();
     }
+
     public void authorize() {
         // Intent webAuthIntent = new Intent(Intent.ACTION_VIEW);
         // webAuthIntent.setData(Uri.parse(AUTH_URL));
         // mCtx.startActivity(webAuthIntent);
         mDialog.show();
     }
-
-
 
     public void resetAccessToken() {
         if (mAccessToken != null) {

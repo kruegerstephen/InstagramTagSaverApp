@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,18 +21,15 @@ import android.view.MenuItem;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
-// Instagram
+// InstagramAuthentication
 import com.example.tagsaver.utils.CategoriesContract;
-import com.example.tagsaver.utils.Instagram;
-import com.example.tagsaver.utils.Instagram.OAuthAuthenticationListener;
+import com.example.tagsaver.utils.InstagramAuthentication;
+import com.example.tagsaver.utils.InstagramAuthentication.OAuthAuthenticationListener;
 import com.example.tagsaver.utils.ApplicationData;
 import com.example.tagsaver.utils.TagsDBHelper;
 
@@ -43,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mSearchResultsRV;
     private EditText mSearchBoxET;
     private TextView mLoadingErrorMessageTV;
-    private boolean isErrorVisible= false;
+    private boolean isErrorVisible = false;
     private RecyclerAdapter mCategoriesAdapter;
     private SQLiteDatabase mDBread;
     private SQLiteDatabase mDBwrite;
@@ -52,22 +48,17 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
 
-
-
-
-    // Instagram stuff
-    private Instagram mApp;
-    private Button btnConnect, btnViewInfo, btnGetAllImages, btnFollowers,
-            btnFollwing;
-    private LinearLayout llAfterLoginView;
+    // Instagram Authentication stuff
+    private InstagramAuthentication mApp;
+    private Button btnConnect;
     private HashMap<String, String> userInfoHashmap = new HashMap<String, String>();
     private Handler handler = new Handler(new Handler.Callback() {
 
         @Override
         public boolean handleMessage(Message msg) {
-            if (msg.what == Instagram.WHAT_FINALIZE) {
+            if (msg.what == InstagramAuthentication.WHAT_FINALIZE) {
                 userInfoHashmap = mApp.getUserInfo();
-            } else if (msg.what == Instagram.WHAT_FINALIZE) {
+            } else if (msg.what == InstagramAuthentication.WHAT_FINALIZE) {
                 Toast.makeText(MainActivity.this, "Check your network.",
                         Toast.LENGTH_SHORT).show();
             }
@@ -75,42 +66,51 @@ public class MainActivity extends AppCompatActivity {
         }
     });
 
+    // **** end Instagram Authentication ****
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        mLoadingErrorMessageTV=(TextView)findViewById(R.id.tv_loading_error_message);
+
+        mLoadingErrorMessageTV = (TextView) findViewById(R.id.tv_loading_error_message);
+
         TagsDBHelper dbHelper = new TagsDBHelper(this);
-        mDBread=dbHelper.getReadableDatabase();
+
+        mDBread = dbHelper.getReadableDatabase();
+
         String sortOrder =
-                CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME+ " DESC";
-        String[] proj={CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME,CategoriesContract.FavoriteRepos._ID};
+                CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME + " DESC";
+        String[] proj = {CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME, CategoriesContract.FavoriteRepos._ID};
+
         String whereClauseArgs = "";
 
-        //recyl view
-        mSearchResultsRV = (RecyclerView)findViewById(R.id.rv_categories);
+
+        //Recycler view
+        mSearchResultsRV = (RecyclerView) findViewById(R.id.rv_categories);
         mSearchResultsRV.setLayoutManager(new LinearLayoutManager(this));
         mSearchResultsRV.setHasFixedSize(true);
         mCategoriesAdapter = new RecyclerAdapter();
         mSearchResultsRV.setAdapter(mCategoriesAdapter);
 
 
-
         Cursor cursor = mDBread.query(
                 CategoriesContract.FavoriteRepos.TABLE_NAME, // The table to query
-                null,                                // The columns to return
-                null,                                // The columns for the WHERE clause
-                null,                            // The values for the WHERE clause
-                null,                                     // don't group the rows
-                null,                                     // don't filter by row groups
-                sortOrder                                 // The sort order
+                null,                               // The columns to return
+                null,                               // The columns for the WHERE clause
+                null,                               // The values for the WHERE clause
+                null,                               // don't group the rows
+                null,                               // don't filter by row groups
+                sortOrder                           // The sort order
         );
 
         //TEST ARE BELOW THIS COMMENT LINE
-        Log.d(TAG,"cursor created");
-        while(cursor.moveToNext()) {
+        Log.d(TAG, "cursor created");
+        while (cursor.moveToNext()) {
 
             Long itemId = new Long(cursor.getLong(cursor.getColumnIndexOrThrow(CategoriesContract.FavoriteRepos._ID)));
             String value = cursor.getString(cursor.getColumnIndex(CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME));
@@ -124,23 +124,18 @@ public class MainActivity extends AppCompatActivity {
         //WE NEED TO REMOVE THAT BECAUSE WE NEED THE FIRST ITEM IN THE RECYCLER VIEW
 
 
-
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(mSearchBoxET, 0);
-//        imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//        imm.showSoftInput(mSearchBoxET, InputMethodManager.SHOW_IMPLICIT);
 
-        // Instagram Intent
-        mApp = new Instagram(this, ApplicationData.CLIENT_ID,
+
+        // Instagram Authentication
+        mApp = new InstagramAuthentication(this, ApplicationData.CLIENT_ID,
                 ApplicationData.CLIENT_SECRET, ApplicationData.CALLBACK_URL);
         mApp.setListener(new OAuthAuthenticationListener() {
 
             @Override
             public void onSuccess() {
-                // tvSummary.setText("Connected as " + mApp.getUserName());
                 btnConnect.setText("Disconnect");
-                //llAfterLoginView.setVisibility(View.VISIBLE);
-                // userInfoHashmap = mApp.
                 mApp.fetchUserName(handler);
             }
 
@@ -160,8 +155,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // click events
-        btnConnect = (Button)findViewById(R.id.btnConnect);
+        // Connect Button Click Event
+        btnConnect = (Button) findViewById(R.id.btnConnect);
         btnConnect.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 connectOrDisconnectUser();
@@ -169,9 +164,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         if (mApp.hasAccessToken()) {
-            // tvSummary.setText("Connected as " + mApp.getUserName());
             btnConnect.setText("Disconnect");
-            //llAfterLoginView.setVisibility(View.VISIBLE);
             mApp.fetchUserName(handler);
 
         }
@@ -179,10 +172,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume(){
+    protected void onResume() {
         super.onResume();
         String sortOrder =
-                CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME+ " DESC";
+                CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME + " DESC";
         Cursor cursor = mDBread.query(
                 CategoriesContract.FavoriteRepos.TABLE_NAME, // The table to query
                 null,                                // The columns to return
@@ -192,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
                 null,                                     // don't filter by row groups
                 sortOrder                                 // The sort order
         );
-        while(cursor.moveToNext()) {
+        while (cursor.moveToNext()) {
 
             Long itemId = new Long(cursor.getLong(cursor.getColumnIndexOrThrow(CategoriesContract.FavoriteRepos._ID)));
             String value = cursor.getString(cursor.getColumnIndex(CategoriesContract.FavoriteRepos.COLUMN_DESCRIPTION));
@@ -203,6 +196,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -239,10 +233,7 @@ public class MainActivity extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog,
                                                     int id) {
                                     mApp.resetAccessToken();
-                                    // btnConnect.setVisibility(View.VISIBLE);
-                                    //llAfterLoginView.setVisibility(View.GONE);
                                     btnConnect.setText("Connect");
-                                    // tvSummary.setText("Not connected");
                                 }
                             })
                     .setNegativeButton("No",
