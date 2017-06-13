@@ -43,7 +43,7 @@ public class InstagramDialog extends Dialog {
     private LinearLayout mContent;
     private TextView mTitle;
 
-    private static final String TAG = "Instagram-WebView";
+    private static final String TAG = "InstagramAuthentication-WebView";
 
     public InstagramDialog(Context context, String url,
                            OAuthDialogListener listener) {
@@ -81,7 +81,7 @@ public class InstagramDialog extends Dialog {
     private void setUpTitle() {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         mTitle = new TextView(getContext());
-        mTitle.setText("Instagram");
+        mTitle.setText("InstagramAuthentication");
         mTitle.setTextColor(Color.WHITE);
         mTitle.setTypeface(Typeface.DEFAULT_BOLD);
         mTitle.setBackgroundColor(Color.BLACK);
@@ -106,7 +106,7 @@ public class InstagramDialog extends Dialog {
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             Log.d(TAG, "Redirecting URL " + url);
 
-            if (url.startsWith(Instagram.mCallbackUrl)) {
+            if (url.startsWith(InstagramAuthentication.mCallbackUrl)) {
                 String urls[] = url.split("=");
                 mListener.onComplete(urls[1]);
                 InstagramDialog.this.dismiss();
