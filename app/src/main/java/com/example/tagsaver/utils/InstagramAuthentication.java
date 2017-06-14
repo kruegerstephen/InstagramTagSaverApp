@@ -96,7 +96,7 @@ public class InstagramAuthentication {
                 + clientId
                 + "&redirect_uri="
                 + mCallbackUrl
-                + "&response_type=code&display=touch&scope=likes+comments+relationships";
+                + "&response_type=code&display=touch&scope=likes+comments+relationships+public_content";
 
         OAuthDialogListener listener = new OAuthDialogListener() {
             @Override
