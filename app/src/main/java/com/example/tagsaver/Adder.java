@@ -53,13 +53,10 @@ public class Adder extends AppCompatActivity implements View.OnClickListener, Lo
     private SQLiteDatabase mDataBaseToCheck;
     private String tags = "";
     private Context context;
-    final static private String[] tagAndNumber = new String[2];
-
 
     private static final String INSTAGRAM_URL_KEY = "instagramUrl";
     private static final int INSTAGRAM_LOADER_ID = 0;
     private InstagramUtils instagramUtil;
-
 
     private RecyclerView mCatListRecyclerView;
     private adderRecyclerAdapter mTagAdapter;
@@ -162,73 +159,11 @@ public class Adder extends AppCompatActivity implements View.OnClickListener, Lo
 
         String instagramURL = instagramUtil.buildTagURL(tagText);
 
-        Log.d("Adder", "Text has been clicked");
-        Log.d("Adder", tagText);
-        Log.d("Adder", instagramURL);
-
         Bundle argsBundle = new Bundle();
         argsBundle.putString(INSTAGRAM_URL_KEY, instagramURL);
         getSupportLoaderManager().initLoader(INSTAGRAM_LOADER_ID, argsBundle, this);
 
-
-
-//        if (!tagText.equals("")) {
-//            tags += " " + tagText;
-//            if (!TextUtils.isEmpty(tagText)) {
-//                new ApiRequest().execute();
-//                mTagAdapter.addTag(tagText);
-//
-//                mTagsName.setText("");
-//            }
-//        }
-
     }
-
-//    private class ApiRequest extends AsyncTask<URL, Void, String> {
-//
-//        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//        }
-//
-//        private OkHttpClient mHTTPClient = new OkHttpClient();
-//        private InstagramUtils iUtils = new InstagramUtils();
-//
-//        //String tagInEdit=mTagsName.getText().toString();
-//
-//        @Override
-//        protected String doInBackground(URL... params) {
-//            String requestResult = null;
-//            Response response = null;
-//            String url = "https://api.instagram.com/v1/tags/"+"snow"+"?access_token=328437615.0d2ac8b.112957f8ed8847f2a6e9cd799fdd9e42"; //add access token here
-//            //String url = iUtils.buildTagURL()
-//            Request request = new Request.Builder()
-//                    .url(url)
-//                    .build();
-//            try {
-//                response = mHTTPClient.newCall(request).execute();
-//                return response.body().string();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//                return null;
-//            }
-//        }
-//
-//        @Override
-//        protected void onPostExecute(String s) {
-//            try {
-//                JSONObject myJson = new JSONObject(s);
-//                JSONObject data = myJson.getJSONObject("data");
-//                //tagAndNumber[0]= data.getString("name");
-//                //tagAndNumber[1] = Integer.toString(data.getInt("media_count"));
-//                //mTagAdapter.addTag(" #"+tagAndNumber[0]+" n"+tagAndNumber[1]);
-//                Log.d(TAG, data.toString());
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//
-//        }
-//    }
 
     @Override
     public Loader<String> onCreateLoader(int id, final Bundle args) {
@@ -242,7 +177,6 @@ public class Adder extends AppCompatActivity implements View.OnClickListener, Lo
                     Log.d(TAG, "AsyncTaskLoader delivering cached Instagram");
                     deliverResult(mInstagramJSON);
                 } else {
-                    //mLoadingIndicatorPB.setVisibility(View.VISIBLE);
                     forceLoad();
                 }
             }
