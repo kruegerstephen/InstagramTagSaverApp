@@ -31,7 +31,7 @@ public class adderRecyclerAdapter extends RecyclerView.Adapter<adderRecyclerAdap
         notifyDataSetChanged();
     }
 
-    public void remTag(String tag){
+    public void remTag(TagItem tag){
         mTagList.remove(tag);
         notifyDataSetChanged();
     }
@@ -70,8 +70,13 @@ public class adderRecyclerAdapter extends RecyclerView.Adapter<adderRecyclerAdap
                 public void onClick(View v) {
 
                     String tag = (String) mTagTextView.getText();
-                    remTag(tag);
 
+                    for(TagItem t : mTagList){
+                        if (t.name == tag){
+                            remTag(t);
+                            break;
+                        }
+                    }
                 }
             });
         }
