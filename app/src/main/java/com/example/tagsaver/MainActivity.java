@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
 
+    // ** Instagram Authenication *** //
     private InstagramAuthentication mApp;
     private Button btnConnect;
 
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         }
     });
 
-    // **** end Instagram Authentication ****
+    // **** end Instagram Authentication **** //
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -234,6 +235,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    // Connects or Disconnects Instagram Session
     private void connectOrDisconnectUser() {
         if (mApp.hasAccessToken()) {
             final AlertDialog.Builder builder = new AlertDialog.Builder(

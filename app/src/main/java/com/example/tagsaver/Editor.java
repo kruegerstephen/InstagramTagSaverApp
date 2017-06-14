@@ -80,12 +80,12 @@ public class Editor extends AppCompatActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         String tagText = mTagsName.getText().toString();
-        tags+=" "+tagText;
-        if (!TextUtils.isEmpty(tagText)) {
-            mTagAdapter.addTag(tagText);
-
-            mTagsName.setText("");
-        }
+//        tags+=" "+tagText;
+//        if (!TextUtils.isEmpty(tagText)) {
+//            mTagAdapter.addTag(tagText);
+//
+//            mTagsName.setText("");
+//        }
 
     }
 }

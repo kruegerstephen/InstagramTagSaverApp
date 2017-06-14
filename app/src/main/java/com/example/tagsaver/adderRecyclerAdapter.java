@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.tagsaver.utils.InstagramUtils.TagItem;
+
 import java.util.ArrayList;
 
 /**
@@ -16,14 +18,15 @@ import java.util.ArrayList;
 
 public class adderRecyclerAdapter extends RecyclerView.Adapter<adderRecyclerAdapter.TagViewHolder> {
 
-    private ArrayList<String> mTagList;
-
+//    private ArrayList<String> mTagList;
+    private ArrayList<TagItem> mTagList;
 
     public adderRecyclerAdapter() {
-        mTagList = new ArrayList<String>();
+        //mTagList = new ArrayList<String>();
+        mTagList = new ArrayList<TagItem>();
     }
 
-    public void addTag(String tag){
+    public void addTag(TagItem tag){
         mTagList.add(tag);
         notifyDataSetChanged();
     }
@@ -48,7 +51,7 @@ public class adderRecyclerAdapter extends RecyclerView.Adapter<adderRecyclerAdap
 
     @Override
     public void onBindViewHolder(TagViewHolder holder, int position) {
-        String tag = mTagList.get(mTagList.size() - position - 1);
+        TagItem tag = mTagList.get(mTagList.size() - position - 1);
         holder.bind(tag);
     }
 
@@ -73,8 +76,9 @@ public class adderRecyclerAdapter extends RecyclerView.Adapter<adderRecyclerAdap
             });
         }
 
-        public void bind(String tag) {
-            mTagTextView.setText(tag);
+        public void bind(TagItem tag) {
+            mTagTextView.setText(tag.name);
+            mTagNumber.setText(String.valueOf(tag.count));
         } //when we are done with the request, the idea is to do mTagTextView.setText(tag.split(" ").get(0)))
             //        and then to do mTagNumber.setText(tag.split(" ").get(1).deleteCharAt(0))
     }
