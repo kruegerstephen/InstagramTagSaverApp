@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +18,18 @@ import android.widget.Toast;
 
 import com.example.tagsaver.utils.CategoriesContract;
 import com.example.tagsaver.utils.TagsDBHelper;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.net.URL;
+
+import okhttp3.Call;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 
 /**
@@ -32,6 +45,7 @@ public class Adder extends AppCompatActivity implements View.OnClickListener {
     private SQLiteDatabase mDataBaseToCheck;
     private String tags="";
     private Context context;
+    final static private String[] tagAndNumber=new String[2];
 
 
     private RecyclerView mCatListRecyclerView;
@@ -132,5 +146,47 @@ public class Adder extends AppCompatActivity implements View.OnClickListener {
             }
         }
 
+    }
+
+    private class ApiRequest extends AsyncTask<URL,Void,String>{
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+        private OkHttpClient mHTTPClient = new OkHttpClient();
+
+        String tagInEdit=mTagsName.getText().toString();
+
+        @Override
+        protected String doInBackground(URL... params) {
+            String requestResult = null;
+            Response response = null;
+            String url = "https://api.instagram.com/v1/tags/"+tagInEdit+"?"; //add access token here
+            Request request = new Request.Builder()
+                    .url(url)
+                    .build();
+            try {
+                response = mHTTPClient.newCall(request).execute();
+                return response.body().string();
+            } catch (IOException e){
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+                JSONObject myJson = new JSONObject(s);
+                JSONObject data=myJson.getJSONObject("data");
+                tagAndNumber[0]= data.getString("name");
+                tagAndNumber[1] = Integer.toString(data.getInt("media_count"));
+                mTagAdapter.addTag(" #"+tagAndNumber[0]+" n"+tagAndNumber[1]);
+            }catch (JSONException e){
+                e.printStackTrace();
+            }
+
+        }
     }
 }

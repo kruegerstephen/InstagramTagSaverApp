@@ -68,6 +68,7 @@ public class catRecyclerAdapter extends RecyclerView.Adapter<catRecyclerAdapter.
                     context.startActivity(intent);
                 }
             });
+            
         }
 
         public void bind(String tag) {
