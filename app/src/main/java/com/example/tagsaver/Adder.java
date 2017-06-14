@@ -58,6 +58,7 @@ public class Adder extends AppCompatActivity implements View.OnClickListener {
         context = getApplicationContext();
         CharSequence text = "Hello toast!";
         final Toast[] toast = new Toast[1];
+        new ApiRequest().execute();
 
         setContentView(R.layout.addcategory);
         mEditName = (EditText)findViewById(R.id.cat_name);
@@ -156,13 +157,13 @@ public class Adder extends AppCompatActivity implements View.OnClickListener {
         }
         private OkHttpClient mHTTPClient = new OkHttpClient();
 
-        String tagInEdit=mTagsName.getText().toString();
+        //String tagInEdit=mTagsName.getText().toString();
 
         @Override
         protected String doInBackground(URL... params) {
             String requestResult = null;
             Response response = null;
-            String url = "https://api.instagram.com/v1/tags/"+tagInEdit+"?"; //add access token here
+            String url = "https://api.instagram.com/v1/tags/"+"snow"+"?access_token=328437615.0d2ac8b.112957f8ed8847f2a6e9cd799fdd9e42"; //add access token here
             Request request = new Request.Builder()
                     .url(url)
                     .build();
@@ -180,9 +181,10 @@ public class Adder extends AppCompatActivity implements View.OnClickListener {
             try {
                 JSONObject myJson = new JSONObject(s);
                 JSONObject data=myJson.getJSONObject("data");
-                tagAndNumber[0]= data.getString("name");
-                tagAndNumber[1] = Integer.toString(data.getInt("media_count"));
-                mTagAdapter.addTag(" #"+tagAndNumber[0]+" n"+tagAndNumber[1]);
+                //tagAndNumber[0]= data.getString("name");
+                //tagAndNumber[1] = Integer.toString(data.getInt("media_count"));
+                //mTagAdapter.addTag(" #"+tagAndNumber[0]+" n"+tagAndNumber[1]);
+                Log.d(TAG,data.toString());
             }catch (JSONException e){
                 e.printStackTrace();
             }
