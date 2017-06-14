@@ -55,11 +55,13 @@ public class adderRecyclerAdapter extends RecyclerView.Adapter<adderRecyclerAdap
 
     class TagViewHolder extends RecyclerView.ViewHolder {
         private TextView mTagTextView;
+        private TextView mTagNumber;
         private Button mRemoveBtn;
 
         public TagViewHolder(final View itemView) {
             super(itemView);
             mTagTextView = (TextView)itemView.findViewById(R.id.tagTextView);
+            mTagNumber = (TextView)itemView.findViewById(R.id.score);
             mRemoveBtn = (Button)itemView.findViewById(R.id.tagRmvBtn);
             mRemoveBtn.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -74,7 +76,7 @@ public class adderRecyclerAdapter extends RecyclerView.Adapter<adderRecyclerAdap
         public void bind(String tag) {
             mTagTextView.setText(tag);
         } //when we are done with the request, the idea is to do mTagTextView.setText(tag.split(" ").get(0)))
-//        and then to do mTagNumber.setText(tag.split(" ").get(1).deleteCharAt(0))
+            //        and then to do mTagNumber.setText(tag.split(" ").get(1).deleteCharAt(0))
     }
 
 
