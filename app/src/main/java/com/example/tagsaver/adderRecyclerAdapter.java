@@ -27,8 +27,25 @@ public class adderRecyclerAdapter extends RecyclerView.Adapter<adderRecyclerAdap
     }
 
     public void addTag(TagItem tag){
-        mTagList.add(tag);
-        notifyDataSetChanged();
+
+        tag.name = "#" + tag.name;
+
+        if(mTagList.size()==0){
+            mTagList.add(tag);
+            notifyDataSetChanged();
+        }
+
+        boolean tagExists = false;
+        for(int i =0; i<mTagList.size();i++){
+            if (mTagList.get(i).name.equals(tag.name)) {
+                tagExists = true;
+            }
+        }
+
+        if(!tagExists){
+            mTagList.add(tag);
+            notifyDataSetChanged();
+        }
     }
 
     public ArrayList<TagItem> getmTagList(){

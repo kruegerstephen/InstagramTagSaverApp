@@ -107,8 +107,6 @@ public class Adder extends AppCompatActivity implements View.OnClickListener, Lo
                         null                           // The sort order
                 );
                 while (cursor.moveToNext()) {
-                    String value = cursor.getString(cursor.getColumnIndex(CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME));
-
                     int i = 0;
                     for(i = 0; i < userCatList.size(); i++) {
                         if(userCatList.get(i).catName.equals(mEditName.getText().toString())){
@@ -131,7 +129,10 @@ public class Adder extends AppCompatActivity implements View.OnClickListener, Lo
 
                     //make toast to say that they can't use this name
                 }
+
+                Adder.super.onBackPressed();
             }
+
 
 
         });

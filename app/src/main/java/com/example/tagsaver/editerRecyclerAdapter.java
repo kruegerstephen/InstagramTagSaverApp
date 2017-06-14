@@ -26,8 +26,19 @@ public class editerRecyclerAdapter extends RecyclerView.Adapter<editerRecyclerAd
     }
 
     public void addTag(TagItem tag){
-        mTagList.add(tag);
-        notifyDataSetChanged();
+        if(mTagList.size()==0){
+            mTagList.add(tag);
+            notifyDataSetChanged();
+        }
+
+        for(TagItem t : mTagList){
+            if (t.name.equals(tag.name)) {
+                break;
+            }else{
+                mTagList.add(tag);
+                notifyDataSetChanged();
+            }
+        }
     }
 
     public ArrayList<TagItem> getmTagList(){

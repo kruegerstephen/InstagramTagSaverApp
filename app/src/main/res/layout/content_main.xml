@@ -9,6 +9,15 @@
     android:padding="8sp"
     tools:context="com.example.tagsaver.MainActivity">
 
+    <TextView
+        android:id="@+id/catTitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="35dp"
+        android:paddingBottom="5dp"
+        android:textStyle="bold"
+        android:text="Your Categories:" />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

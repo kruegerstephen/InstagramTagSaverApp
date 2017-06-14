@@ -96,9 +96,8 @@ public class Editer extends AppCompatActivity implements View.OnClickListener, L
         mDoneButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 updateCategory();
+                Editer.super.onBackPressed();
             }
-
-
         });
 
 
