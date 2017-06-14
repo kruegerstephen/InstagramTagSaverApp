@@ -9,14 +9,6 @@
     android:padding="8sp"
     tools:context="com.example.tagsaver.MainActivity">
 
-    <EditText
-        android:id="@+id/et_search_box"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:visibility="visible"
-        android:hint="Search for your categories"/>
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
