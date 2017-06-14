@@ -25,7 +25,7 @@
             android:text="Done" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_tags_list"
+            android:id="@+id/rv_edit_list"
             android:layout_width="match_parent"
             android:layout_height="345dp">
         </android.support.v7.widget.RecyclerView>

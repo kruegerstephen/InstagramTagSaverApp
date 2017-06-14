@@ -37,7 +37,7 @@
                 android:value=".MainActivity"/>
 
         </activity>
-        <activity android:name=".Editor"
+        <activity android:name=".Editer"
             android:label="Edit Category"
             android:parentActivityName=".MainActivity"
             >

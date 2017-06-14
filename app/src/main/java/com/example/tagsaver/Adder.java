@@ -20,15 +20,20 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import com.example.tagsaver.utils.CategoriesContract;
+import com.example.tagsaver.utils.CategoryObj;
 import com.example.tagsaver.utils.TagsDBHelper;
 import com.example.tagsaver.utils.InstagramUtils;
 import com.example.tagsaver.utils.InstagramUtils.TagItem;
 import com.example.tagsaver.utils.NetworkUtils;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 
 //import org.json.JSONArray;
 //import org.json.JSONException;
 //import org.json.JSONObject;
+
+import org.json.JSONStringer;
 
 import java.io.IOException;
 //import java.net.URL;
@@ -53,6 +58,8 @@ public class Adder extends AppCompatActivity implements View.OnClickListener, Lo
     private SQLiteDatabase mDataBaseToCheck;
     private String tags = "";
     private Context context;
+    public ArrayList<CategoryObj> userCatList = new ArrayList<>();
+
 
     private static final String INSTAGRAM_URL_KEY = "instagramUrl";
     private static final int INSTAGRAM_LOADER_ID = 0;
@@ -101,8 +108,12 @@ public class Adder extends AppCompatActivity implements View.OnClickListener, Lo
                 );
                 while (cursor.moveToNext()) {
                     String value = cursor.getString(cursor.getColumnIndex(CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME));
-                    if (value.equals(mEditName.getText().toString())) {
-                        alreadyThere = true;
+
+                    int i = 0;
+                    for(i = 0; i < userCatList.size(); i++) {
+                        if(userCatList.get(i).catName.equals(mEditName.getText().toString())){
+                            alreadyThere = true;
+                        }
                     }
                 }
                 // Code here executes on main thread after user presses button
@@ -125,6 +136,26 @@ public class Adder extends AppCompatActivity implements View.OnClickListener, Lo
 
         });
 
+
+        //Get Cat List
+        Cursor cursor = mDataBaseToCheck.query(
+                CategoriesContract.FavoriteRepos.TABLE_NAME, // The table to query
+                null,                               // The columns to return
+                null,                               // The columns for the WHERE clause
+                null,                               // The values for the WHERE clause
+                null,                               // don't group the rows
+                null,                               // don't filter by row groups
+                null                           // The sort order
+        );
+        while (cursor.moveToNext()) {
+            byte[] blob = cursor.getBlob(cursor.getColumnIndex(CategoriesContract.FavoriteRepos.COLUMN_DESCRIPTION));
+            if(blob!=null){
+                String json = new String(blob);
+                Gson gson = new Gson();
+                userCatList = gson.fromJson(json, new TypeToken<ArrayList<CategoryObj>>(){}.getType());
+            }
+        }
+
         //recycler adapter
         mCatListRecyclerView = (RecyclerView) findViewById(R.id.rv_tags_list);
         mCatListRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -133,7 +164,6 @@ public class Adder extends AppCompatActivity implements View.OnClickListener, Lo
         mCatListRecyclerView.setAdapter(mTagAdapter);
         mAddTagButton.setOnClickListener(this);
 
-
     }
 
     private long createNewCategory() {
@@ -141,9 +171,18 @@ public class Adder extends AppCompatActivity implements View.OnClickListener, Lo
         if (mEditName.getText() != null) {
             ContentValues values = new ContentValues();
 
-            values.put(CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME,
-                    mEditName.getText().toString());
-            values.put(CategoriesContract.FavoriteRepos.COLUMN_DESCRIPTION, tags);
+            CategoryObj cObj = new CategoryObj();
+
+            cObj.catName = String.valueOf(mEditName.getText());
+            cObj.tagList = mTagAdapter.getmTagList();
+            cObj.media_count = "";
+
+            userCatList.add(cObj);
+
+            Gson gson = new Gson();
+
+            values.put(CategoriesContract.FavoriteRepos.COLUMN_DESCRIPTION,
+                    gson.toJson(userCatList).getBytes());
             return mDB.insert(CategoriesContract.FavoriteRepos.TABLE_NAME, null, values);
 
         } else {

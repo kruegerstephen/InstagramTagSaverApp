@@ -28,7 +28,6 @@ public class InstagramUtils {
     public static class TagItem implements Serializable {
         public int count;
         public String name;
-
     }
 
     public static String buildTagURL(String tag) {
@@ -47,7 +46,6 @@ public class InstagramUtils {
             TagItem tItem = new TagItem();
             tItem.name = tagObj.getString("name");
             tItem.count  = tagObj.getInt("media_count");
-
             return tItem;
         } catch (JSONException e) {
             e.printStackTrace();

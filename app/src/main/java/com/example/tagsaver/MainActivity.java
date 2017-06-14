@@ -24,14 +24,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 // InstagramAuthentication
 import com.example.tagsaver.utils.CategoriesContract;
+import com.example.tagsaver.utils.CategoryObj;
 import com.example.tagsaver.utils.InstagramAuthentication;
 import com.example.tagsaver.utils.InstagramAuthentication.OAuthAuthenticationListener;
 import com.example.tagsaver.utils.ApplicationData;
 import com.example.tagsaver.utils.TagsDBHelper;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,7 +50,10 @@ public class MainActivity extends AppCompatActivity {
     private SQLiteDatabase mDBwrite;
     private Button editCat;
     private String[] whereCondition = {""};
+    ArrayList<String> alreadyDisp = new ArrayList<>();
     private static final String TAG = MainActivity.class.getSimpleName();
+
+    public ArrayList<CategoryObj> userCatList = new ArrayList<>();
 
 
     // ** Instagram Authenication *** //
@@ -91,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
 
         String whereClauseArgs = "";
 
-     //recyl view
         //Recycler view
         mSearchResultsRV = (RecyclerView) findViewById(R.id.rv_categories);
         mSearchResultsRV.setLayoutManager(new LinearLayoutManager(this));
@@ -110,20 +117,25 @@ public class MainActivity extends AppCompatActivity {
                 sortOrder                           // The sort order
         );
 
-        //TEST ARE BELOW THIS COMMENT LINE
         Log.d(TAG, "cursor created");
         while (cursor.moveToNext()) {
 
-            Long itemId = new Long(cursor.getLong(cursor.getColumnIndexOrThrow(CategoriesContract.FavoriteRepos._ID)));
-            String value = cursor.getString(cursor.getColumnIndex(CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME));
-            Log.d(TAG, itemId.toString());
-            Log.d(TAG, value);
-            mCategoriesAdapter.addTag(value);
+             byte[] blob = cursor.getBlob(cursor.getColumnIndex(CategoriesContract.FavoriteRepos.COLUMN_DESCRIPTION));
+            if(blob!=null){
+                String json = new String(blob);
+                Gson gson = new Gson();
+                userCatList = gson.fromJson(json, new TypeToken<ArrayList<CategoryObj>>(){}.getType());
+            }
 
         }
-        //TESTS ARE ABOVE THIS COMMENT
 
-        //WE NEED TO REMOVE THAT BECAUSE WE NEED THE FIRST ITEM IN THE RECYCLER VIEW
+        int i = 0;
+        for(i = 0; i < userCatList.size(); i++) {
+            if(!alreadyDisp.contains(userCatList.get(i).toString())) {
+                alreadyDisp.add(userCatList.get(i).catName);
+                mCategoriesAdapter.addTag(userCatList.get(i).catName);
+            }
+        }
 
 
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -196,18 +208,26 @@ public class MainActivity extends AppCompatActivity {
                 sortOrder                           // The sort order
         );
 
-        //TEST ARE BELOW THIS COMMENT LINE
         Log.d(TAG, "cursor created");
         while (cursor.moveToNext()) {
 
-            Long itemId = new Long(cursor.getLong(cursor.getColumnIndexOrThrow(CategoriesContract.FavoriteRepos._ID)));
-            String value = cursor.getString(cursor.getColumnIndex(CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME));
-            Log.d(TAG, itemId.toString());
-            Log.d(TAG, value);
-            mCategoriesAdapter.addTag(value);
+            byte[] blob = cursor.getBlob(cursor.getColumnIndex(CategoriesContract.FavoriteRepos.COLUMN_DESCRIPTION));
+            if(blob!=null){
+                String json = new String(blob);
+                Gson gson = new Gson();
+                userCatList = gson.fromJson(json, new TypeToken<ArrayList<CategoryObj>>(){}.getType());
+
+            }
 
         }
 
+        int i = 0;
+        for(i = 0; i < userCatList.size(); i++) {
+            if(!alreadyDisp.contains(userCatList.get(i).toString())) {
+                alreadyDisp.add(userCatList.get(i).catName);
+                mCategoriesAdapter.addTag(userCatList.get(i).catName);
+            }
+        }
     }
 
     @Override

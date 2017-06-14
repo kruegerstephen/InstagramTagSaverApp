@@ -21,9 +21,9 @@ public class TagsDBHelper extends SQLiteOpenHelper {
         final String SQL_CREATE_FAVORITE_REPOS_TABLE =
                 "CREATE TABLE " + CategoriesContract.FavoriteRepos.TABLE_NAME + " (" +
                         CategoriesContract.FavoriteRepos._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME + " TEXT NOT NULL, " +
+                        CategoriesContract.FavoriteRepos.COLUMN_FULL_NAME + " TEXT , " +
                         CategoriesContract.FavoriteRepos.COLUMN_DESCRIPTION + " TEXT, " +
-                        CategoriesContract.FavoriteRepos.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP " +
+                        CategoriesContract.FavoriteRepos.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP, " +
                         CategoriesContract.FavoriteRepos.SCORE+ " INTEGER"+
                         ");" ;
         db.execSQL(SQL_CREATE_FAVORITE_REPOS_TABLE);

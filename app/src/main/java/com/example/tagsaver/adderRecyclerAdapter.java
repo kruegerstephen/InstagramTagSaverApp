@@ -31,6 +31,14 @@ public class adderRecyclerAdapter extends RecyclerView.Adapter<adderRecyclerAdap
         notifyDataSetChanged();
     }
 
+    public ArrayList<TagItem> getmTagList(){
+        return mTagList;
+    }
+
+    public void setmTagList(ArrayList<TagItem> tagListFromDB){
+        mTagList = tagListFromDB;
+    }
+
     public void remTag(TagItem tag){
         mTagList.remove(tag);
         notifyDataSetChanged();

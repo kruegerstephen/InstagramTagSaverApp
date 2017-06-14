@@ -18,13 +18,22 @@ import java.util.ArrayList;
 
 public class catRecyclerAdapter extends RecyclerView.Adapter<catRecyclerAdapter.CatViewHolder> {
 
-    private ArrayList<String> mCatList;
+    private ArrayList<String> mCatList = new ArrayList<>();
+    public static final String EXTRA_MESSAGE = "MessageName";
 
 
     public catRecyclerAdapter() {
         mCatList = new ArrayList<String>();
     }
 
+
+    public ArrayList<String> getmTagList(){
+        return mCatList;
+    }
+
+    public void setmTagList(ArrayList<String> catListFromMain){
+        mCatList = catListFromMain;
+    }
 
 
     @Override
@@ -64,7 +73,9 @@ public class catRecyclerAdapter extends RecyclerView.Adapter<catRecyclerAdapter.
                 @Override
                 public void onClick(View v) {
                     Context context = v.getContext();
-                    Intent intent = new Intent(context, Editor.class);
+                    String message = mCatTextView.getText().toString();
+                    Intent intent = new Intent(context, Editer.class);
+                    intent.putExtra(EXTRA_MESSAGE, message);
                     context.startActivity(intent);
                 }
             });
