@@ -61,8 +61,8 @@ public class Adder extends AppCompatActivity implements View.OnClickListener, Lo
     public ArrayList<CategoryObj> userCatList = new ArrayList<>();
 
 
-    private static final String INSTAGRAM_URL_KEY = "instagramUrl";
-    private static final int INSTAGRAM_LOADER_ID = 0;
+    private String INSTAGRAM_URL_KEY = "instagramUrl";
+    private int INSTAGRAM_LOADER_ID = 0;
     private InstagramUtils instagramUtil;
 
     private RecyclerView mCatListRecyclerView;
@@ -195,12 +195,16 @@ public class Adder extends AppCompatActivity implements View.OnClickListener, Lo
     public void onClick(View v) {
 
         String tagText = mTagsName.getText().toString();
+        Log.d(TAG, tagText);
 
         String instagramURL = instagramUtil.buildTagURL(tagText);
+
+        Log.d(TAG, instagramURL);
 
         Bundle argsBundle = new Bundle();
         argsBundle.putString(INSTAGRAM_URL_KEY, instagramURL);
         getSupportLoaderManager().initLoader(INSTAGRAM_LOADER_ID, argsBundle, this);
+        INSTAGRAM_LOADER_ID++;
 
     }
 
