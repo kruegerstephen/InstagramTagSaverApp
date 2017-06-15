@@ -196,11 +196,9 @@ public class Adder extends AppCompatActivity implements View.OnClickListener, Lo
     public void onClick(View v) {
 
         String tagText = mTagsName.getText().toString();
-        Log.d(TAG, tagText);
+        Log.d(TAG, "Adding new tag: " + tagText);
 
         String instagramURL = instagramUtil.buildTagURL(tagText);
-
-        Log.d(TAG, instagramURL);
 
         Bundle argsBundle = new Bundle();
         argsBundle.putString(INSTAGRAM_URL_KEY, instagramURL);
@@ -230,6 +228,7 @@ public class Adder extends AppCompatActivity implements View.OnClickListener, Lo
                 String InstagramURL = args.getString(INSTAGRAM_URL_KEY);
 
                 if (InstagramURL == null || InstagramURL.equals("")) {
+                    Log.d(TAG, "InstagramURL is empty or null");
                     return null;
                 }
 
@@ -256,8 +255,14 @@ public class Adder extends AppCompatActivity implements View.OnClickListener, Lo
     @Override
     public void onLoadFinished(Loader<String> loader, String InstagramJSON) {
         Log.d(TAG, "AsyncTaskLoader load finished");
-        TagItem tag = instagramUtil.parseTagJSON(InstagramJSON);
-        mTagAdapter.addTag(tag);
+
+        if(InstagramJSON != null) {
+            TagItem tag = instagramUtil.parseTagJSON(InstagramJSON);
+            mTagAdapter.addTag(tag);
+        }
+        else{
+            Log.d(TAG, "InsgramJson was null");
+        }
     }
 
     @Override

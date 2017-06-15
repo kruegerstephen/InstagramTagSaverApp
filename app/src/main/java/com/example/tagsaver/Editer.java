@@ -233,8 +233,13 @@ public class Editer extends AppCompatActivity implements View.OnClickListener, L
     @Override
     public void onLoadFinished(Loader<String> loader, String InstagramJSON) {
         Log.d(TAG, "AsyncTaskLoader load finished");
-        TagItem tag = instagramUtil.parseTagJSON(InstagramJSON);
-        mTagAdapter.addTag(tag);
+        if(InstagramJSON != null) {
+            TagItem tag = instagramUtil.parseTagJSON(InstagramJSON);
+            mTagAdapter.addTag(tag);
+        }
+        else{
+            Log.d(TAG, "InsgramJson was null");
+        }
     }
 
     @Override

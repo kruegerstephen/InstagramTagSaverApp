@@ -3,21 +3,21 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Rhodak\Documents\final-project-tagsaver\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jar="/Users/nathan/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.6.2/f1bc476cc167b18e66c297df599b2377131a8947/gson-2.6.2.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
-        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="C:\Users\Rhodak\Documents\final-project-tagsaver\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_5ccef02a7bb17866cc75963a7883340fa0e8a627\classes.dex" />
+        sha1="f1bc476cc167b18e66c297df599b2377131a8947">
+        <dex dex="/Users/nathan/Documents/School/Spring2017/cs496/final-project-tagsaver/app/build/intermediates/transforms/dex/debug/folders/1000/10/gson-2.6.2_5cf2be1a4e7584e6ce2bf1a2f93f398c9323d080/classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Rhodak\Documents\final-project-tagsaver\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jar="/Users/nathan/Documents/School/Spring2017/cs496/final-project-tagsaver/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.3"
-        sha1="a4d7c6b13d5da53bbaac28dd185c684b50977a8a">
-        <dex dex="C:\Users\Rhodak\Documents\final-project-tagsaver\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_f49a991bf4bb272764058bda2d434d9180c55f2b\classes.dex" />
+        sha1="60f201faa07150f1eadf8c3fd121a98411974f87">
+        <dex dex="/Users/nathan/Documents/School/Spring2017/cs496/final-project-tagsaver/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_98ab320b9311a77731ef91592c53c9aada07902a/classes.dex" />
     </item>
 
 </items>
