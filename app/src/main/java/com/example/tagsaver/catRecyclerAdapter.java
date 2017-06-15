@@ -1,14 +1,27 @@
 package com.example.tagsaver;
 
+import android.app.Application;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.location.LocationManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+
+import com.example.tagsaver.utils.CategoriesContract;
+import com.example.tagsaver.utils.CategoryObj;
+import com.example.tagsaver.utils.TagsDBHelper;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
 
@@ -64,6 +77,10 @@ public class catRecyclerAdapter extends RecyclerView.Adapter<catRecyclerAdapter.
     class CatViewHolder extends RecyclerView.ViewHolder {
         private TextView mCatTextView;
         private Button mEditBtn;
+        private Button cpyBtn;
+        private ArrayList<CategoryObj> userCatList;
+        private String listOfStrings = "";
+
 
         public CatViewHolder(final View itemView) {
             super(itemView);
@@ -77,6 +94,26 @@ public class catRecyclerAdapter extends RecyclerView.Adapter<catRecyclerAdapter.
                     Intent intent = new Intent(context, Editer.class);
                     intent.putExtra(EXTRA_MESSAGE, message);
                     context.startActivity(intent);
+                }
+            });
+
+            cpyBtn = (Button)itemView.findViewById(R.id.buttonCopy);
+            cpyBtn.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    userCatList = MainActivity.getCatList();
+                    int i = 0;
+                    for(i = 0; i < userCatList.size(); i++) {
+                        if(userCatList.get(i).catName.equals(mCatTextView.getText())) {
+                            for(int x = 0; x < userCatList.get(i).tagList.size(); x++) {
+                                listOfStrings += " "+userCatList.get(i).tagList.get(x).name;
+                            }
+                        }
+                    }
+
+                    Context context = v.getContext();
+                    ClipboardManager clipboard = (ClipboardManager)context.getSystemService(context.CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText("tags", listOfStrings);
+                    clipboard.setPrimaryClip(clip);
                 }
             });
             

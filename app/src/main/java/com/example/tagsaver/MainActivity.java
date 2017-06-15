@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Paint;
@@ -12,6 +13,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.preference.PreferenceManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -48,14 +50,15 @@ public class MainActivity extends AppCompatActivity {
     private boolean isErrorVisible = false;
     private catRecyclerAdapter mCategoriesAdapter;
     private SQLiteDatabase mDBread;
+    private Button cpyBtn;
     private SQLiteDatabase mDBwrite;
     private Button editCat;
     private String[] whereCondition = {""};
-    ArrayList<String> alreadyDisp = new ArrayList<>();
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    public ArrayList<CategoryObj> userCatList = new ArrayList<>();
+    public static ArrayList<CategoryObj> userCatList = new ArrayList<>();
 
+    private SharedPreferences sharedPreferences;
 
     // ** Instagram Authenication *** //
     private InstagramAuthentication mApp;
@@ -81,8 +84,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        ArrayList<String> alreadyDisp = new ArrayList<>();
 
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         TextView mainTitle = (TextView) findViewById(R.id.catTitle);
@@ -90,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         mLoadingErrorMessageTV = (TextView) findViewById(R.id.tv_loading_error_message);
 
@@ -141,7 +146,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(mSearchBoxET, 0);
 
@@ -182,6 +186,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
         if (mApp.hasAccessToken()) {
             btnConnect.setText("Disconnect");
             mApp.fetchUserName(handler);
@@ -189,6 +195,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+    public static ArrayList<CategoryObj> getCatList()
+    {
+        return userCatList;
+    }
+
 
     @Override
     protected void onResume() {
@@ -200,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
         mSearchResultsRV.setHasFixedSize(true);
         mCategoriesAdapter = new catRecyclerAdapter();
         mSearchResultsRV.setAdapter(mCategoriesAdapter);
-
+        ArrayList<String> alreadyDisp = new ArrayList<>();
 
         Cursor cursor = mDBread.query(
                 CategoriesContract.FavoriteRepos.TABLE_NAME, // The table to query
